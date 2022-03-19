@@ -21,7 +21,6 @@ import {
 /**
  * postPathBySlug
  */
-
 export function postPathBySlug(slug) {
   return `/posts/${slug}`;
 }
@@ -29,7 +28,6 @@ export function postPathBySlug(slug) {
 /**
  * getPostBySlug
  */
-
 export async function getPostBySlug(slug) {
   const apolloClient = getApolloClient();
   const apiHost = new URL(process.env.WORDPRESS_GRAPHQL_ENDPOINT).host;
@@ -121,7 +119,6 @@ export async function getPostBySlug(slug) {
 /**
  * getAllPosts
  */
-
 const allPostsIncludesTypes = {
   all: QUERY_ALL_POSTS,
   archive: QUERY_ALL_POSTS_ARCHIVE,
@@ -147,7 +144,6 @@ export async function getAllPosts(options = {}) {
 /**
  * getPostsByAuthorSlug
  */
-
 const postsByAuthorSlugIncludesTypes = {
   all: QUERY_POSTS_BY_AUTHOR_SLUG,
   archive: QUERY_POSTS_BY_AUTHOR_SLUG_ARCHIVE,
@@ -183,7 +179,6 @@ export async function getPostsByAuthorSlug({ slug, ...options }) {
 /**
  * getPostsByCategoryId
  */
-
 const postsByCategoryIdIncludesTypes = {
   all: QUERY_POSTS_BY_CATEGORY_ID,
   archive: QUERY_POSTS_BY_CATEGORY_ID_ARCHIVE,
@@ -219,7 +214,6 @@ export async function getPostsByCategoryId({ categoryId, ...options }) {
 /**
  * getRecentPosts
  */
-
 export async function getRecentPosts({ count, ...options }) {
   const { posts } = await getAllPosts(options);
   const sorted = sortObjectsByDate(posts);
@@ -231,7 +225,6 @@ export async function getRecentPosts({ count, ...options }) {
 /**
  * sanitizeExcerpt
  */
-
 export function sanitizeExcerpt(excerpt) {
   if (typeof excerpt !== 'string') {
     throw new Error(`Failed to sanitize excerpt: invalid type ${typeof excerpt}`);
@@ -259,7 +252,6 @@ export function sanitizeExcerpt(excerpt) {
 /**
  * mapPostData
  */
-
 export function mapPostData(post = {}) {
   const data = { ...post };
 
@@ -303,7 +295,6 @@ export function mapPostData(post = {}) {
 /**
  * getRelatedPosts
  */
-
 export async function getRelatedPosts(categories, postId, count = 5) {
   if (!Array.isArray(categories) || categories.length === 0) return;
 
@@ -327,8 +318,10 @@ export async function getRelatedPosts(categories, postId, count = 5) {
     related = await getRelatedPosts(categories, postId, count);
   }
 
-  if (Array.isArray(related.posts) && related.posts.length > count) {
-    return related.posts.slice(0, count);
+  if (related) {
+    if (Array.isArray(related.posts) && related.posts.length > count) {
+      return related.posts.slice(0, count);
+    }
   }
 
   return related;
@@ -337,7 +330,6 @@ export async function getRelatedPosts(categories, postId, count = 5) {
 /**
  * sortStickyPosts
  */
-
 export function sortStickyPosts(posts) {
   return [...posts].sort((post) => (post.isSticky ? -1 : 1));
 }
@@ -345,7 +337,6 @@ export function sortStickyPosts(posts) {
 /**
  * getPostsPerPage
  */
-
 export async function getPostsPerPage() {
   //If POST_PER_PAGE is defined at next.config.js
   if (process.env.POSTS_PER_PAGE) {
@@ -372,7 +363,6 @@ export async function getPostsPerPage() {
 /**
  * getPageCount
  */
-
 export async function getPagesCount(posts, postsPerPage) {
   const _postsPerPage = postsPerPage ?? (await getPostsPerPage());
   return Math.ceil(posts.length / _postsPerPage);
@@ -381,7 +371,6 @@ export async function getPagesCount(posts, postsPerPage) {
 /**
  * getPaginatedPosts
  */
-
 export async function getPaginatedPosts({ currentPage = 1, ...options } = {}) {
   const { posts } = await getAllPosts(options);
   const postsPerPage = await getPostsPerPage();

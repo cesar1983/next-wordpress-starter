@@ -1,7 +1,6 @@
 /**
  * decodeHtmlEntities
  */
-
 export function decodeHtmlEntities(text) {
   if (typeof text !== 'string') {
     throw new Error(`Failed to decode HTML entity: invalid type ${typeof text}`);
@@ -21,12 +20,16 @@ export function decodeHtmlEntities(text) {
 /**
  * removeLastTrailingSlash
  */
-
 export function removeLastTrailingSlash(url) {
   if (typeof url !== 'string') return url;
   return url.replace(/\/$/, '');
 }
 
+/**
+ * Remove Extra Spaces
+ * @param {*} text
+ * @returns formatted text
+ */
 export function removeExtraSpaces(text) {
   if (typeof text !== 'string') return;
   return text.replace(/\s+/g, ' ').trim();

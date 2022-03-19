@@ -11,7 +11,6 @@ import {
 /**
  * pagePathBySlug
  */
-
 export function pagePathBySlug(slug) {
   return `/${slug}`;
 }
@@ -19,7 +18,6 @@ export function pagePathBySlug(slug) {
 /**
  * getPageByUri
  */
-
 export async function getPageByUri(uri) {
   const apolloClient = getApolloClient();
   const apiHost = new URL(process.env.WORDPRESS_GRAPHQL_ENDPOINT).host;
@@ -104,7 +102,6 @@ export async function getPageByUri(uri) {
 /**
  * getAllPages
  */
-
 const allPagesIncludesTypes = {
   all: QUERY_ALL_PAGES,
   archive: QUERY_ALL_PAGES_ARCHIVE,
@@ -130,7 +127,6 @@ export async function getAllPages(options = {}) {
 /**
  * getTopLevelPages
  */
-
 export async function getTopLevelPages(options) {
   const { pages } = await getAllPages(options);
 
@@ -145,7 +141,6 @@ export async function getTopLevelPages(options) {
 /**
  * mapPageData
  */
-
 export function mapPageData(page = {}) {
   const data = { ...page };
 
@@ -167,7 +162,6 @@ export function mapPageData(page = {}) {
 /**
  * getBreadcrumbsByUri
  */
-
 export function getBreadcrumbsByUri(uri, pages) {
   const breadcrumbs = [];
   const uriSegments = uri.split('/').filter((segment) => segment !== '');

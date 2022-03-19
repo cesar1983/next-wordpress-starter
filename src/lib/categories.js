@@ -5,7 +5,6 @@ import { QUERY_ALL_CATEGORIES, QUERY_CATEGORY_BY_SLUG, QUERY_CATEGORY_SEO_BY_SLU
 /**
  * categoryPathBySlug
  */
-
 export function categoryPathBySlug(slug) {
   return `/categories/${slug}`;
 }
@@ -13,7 +12,6 @@ export function categoryPathBySlug(slug) {
 /**
  * getAllCategories
  */
-
 export async function getAllCategories() {
   const apolloClient = getApolloClient();
 
@@ -31,7 +29,6 @@ export async function getAllCategories() {
 /**
  * getCategoryBySlug
  */
-
 export async function getCategoryBySlug(slug) {
   const apolloClient = getApolloClient();
   const apiHost = new URL(process.env.WORDPRESS_GRAPHQL_ENDPOINT).host;
@@ -122,7 +119,6 @@ export async function getCategoryBySlug(slug) {
 /**
  * getCategories
  */
-
 export async function getCategories({ count } = {}) {
   const { categories } = await getAllCategories();
   return {
@@ -133,7 +129,6 @@ export async function getCategories({ count } = {}) {
 /**
  * mapCategoryData
  */
-
 export function mapCategoryData(category = {}) {
   const data = { ...category };
   return data;

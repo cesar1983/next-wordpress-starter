@@ -9,7 +9,6 @@ import { QUERY_ALL_USERS, QUERY_ALL_USERS_SEO } from 'data/users';
 /**
  * postPathBySlug
  */
-
 export function authorPathBySlug(slug) {
   return `/authors/${slug}`;
 }
@@ -17,7 +16,6 @@ export function authorPathBySlug(slug) {
 /**
  * getUserBySlug
  */
-
 export async function getUserBySlug(slug) {
   const { users } = await getAllUsers();
 
@@ -31,7 +29,6 @@ export async function getUserBySlug(slug) {
 /**
  * authorPathByName
  */
-
 export function authorPathByName(name) {
   return `/authors/${parameterize(name)}`;
 }
@@ -39,7 +36,6 @@ export function authorPathByName(name) {
 /**
  * getUserByNameSlug
  */
-
 export async function getUserByNameSlug(name) {
   const { users } = await getAllUsers();
 
@@ -53,7 +49,6 @@ export async function getUserByNameSlug(name) {
 /**
  * userSlugByName
  */
-
 export function userSlugByName(name) {
   return parameterize(name);
 }
@@ -61,7 +56,6 @@ export function userSlugByName(name) {
 /**
  * getAllUsers
  */
-
 export async function getAllUsers() {
   const apolloClient = getApolloClient();
 
@@ -120,7 +114,6 @@ export async function getAllUsers() {
 /**
  * getAllAuthors
  */
-
 export async function getAllAuthors() {
   const { users } = await getAllUsers();
 
@@ -140,7 +133,6 @@ export async function getAllAuthors() {
 /**
  * mapUserData
  */
-
 export function mapUserData(user) {
   return {
     ...user,
@@ -152,7 +144,6 @@ export function mapUserData(user) {
 /**
  * updateUserAvatar
  */
-
 export function updateUserAvatar(avatar) {
   // The URL by default that comes from Gravatar / WordPress is not a secure
   // URL. This ends up redirecting to https, but it gives mixed content warnings

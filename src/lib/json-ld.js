@@ -6,6 +6,10 @@ import { pagePathBySlug } from 'lib/pages';
 
 import config from '../../package.json';
 
+/**
+ * @param {*} param0
+ * @returns Article jsonld
+ */
 export function ArticleJsonLd({ post = {}, siteTitle = '' }) {
   const { homepage = '', faviconPath = '/favicon.ico' } = config;
   const { title, slug, excerpt, date, author, categories, modified, featuredImage } = post;
@@ -53,6 +57,10 @@ export function ArticleJsonLd({ post = {}, siteTitle = '' }) {
   );
 }
 
+/**
+ * @param {*} param0
+ * @returns Website jsonld
+ */
 export function WebsiteJsonLd({ siteTitle = '' }) {
   const { homepage = '' } = config;
 
@@ -76,6 +84,11 @@ export function WebsiteJsonLd({ siteTitle = '' }) {
   );
 }
 
+/**
+ *
+ * @param {*} param0
+ * @returns webpage jsonld
+ */
 export function WebpageJsonLd({ title = '', description = '', siteTitle = '', slug = '' }) {
   const { homepage = '' } = config;
   const path = pagePathBySlug(slug);
@@ -99,6 +112,10 @@ export function WebpageJsonLd({ title = '', description = '', siteTitle = '', sl
   );
 }
 
+/**
+ * @param {*} param0
+ * @returns Author jsonld
+ */
 export function AuthorJsonLd({ author = {} }) {
   const { homepage = '' } = config;
   const { name, avatar, description } = author;
@@ -120,6 +137,9 @@ export function AuthorJsonLd({ author = {} }) {
   );
 }
 
+/**
+ * @returns Logo jsonld
+ */
 export function LogoJsonLd() {
   const { homepage = '', faviconPath = '/favicon.ico' } = config;
 

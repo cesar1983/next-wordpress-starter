@@ -148,17 +148,23 @@ export async function getStaticProps({ params = {} } = {}) {
 
   const { categories, databaseId: postId } = post;
 
-  const { category: relatedCategory, posts: relatedPosts } = await getRelatedPosts(categories, postId);
-  const hasRelated = relatedCategory && Array.isArray(relatedPosts) && relatedPosts.length;
-  const related = !hasRelated
-    ? null
-    : {
-        posts: relatedPosts,
-        title: {
-          name: relatedCategory.name || null,
-          link: categoryPathBySlug(relatedCategory.slug),
-        },
-      };
+  const relatedCategoryPosts = await getRelatedPosts(categories, postId);
+
+  let related = null;
+
+  if (relatedCategoryPosts) {
+    const { category: relatedCategory, posts: relatedPosts } = relatedCategoryPosts;
+    const hasRelated = relatedCategory && Array.isArray(relatedPosts) && relatedPosts.length;
+    related = !hasRelated
+      ? null
+      : {
+          posts: relatedPosts,
+          title: {
+            name: relatedCategory.name || null,
+            link: categoryPathBySlug(relatedCategory.slug),
+          },
+        };
+  }
 
   return {
     props: {

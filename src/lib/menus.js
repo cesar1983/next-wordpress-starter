@@ -1,5 +1,4 @@
 import { getApolloClient } from 'lib/apollo-client';
-
 import { QUERY_ALL_MENUS } from 'data/menus';
 
 export const MENU_LOCATION_NAVIGATION_DEFAULT = 'DEFAULT_NAVIGATION';
@@ -7,7 +6,6 @@ export const MENU_LOCATION_NAVIGATION_DEFAULT = 'DEFAULT_NAVIGATION';
 /**
  * getAllMenus
  */
-
 export async function getAllMenus() {
   const apolloClient = getApolloClient();
 
@@ -25,7 +23,6 @@ export async function getAllMenus() {
 /**
  * mapMenuData
  */
-
 export function mapMenuData(menu = {}) {
   const { node } = menu;
   const data = { ...node };
@@ -40,7 +37,6 @@ export function mapMenuData(menu = {}) {
 /**
  * mapPagesToMenuItems
  */
-
 export function mapPagesToMenuItems(pages) {
   return pages.map(({ id, uri, title }) => {
     return {
@@ -54,7 +50,6 @@ export function mapPagesToMenuItems(pages) {
 /**
  * createMenuFromPages
  */
-
 export function createMenuFromPages({ locations, pages }) {
   return {
     menuItems: mapPagesToMenuItems(pages),
@@ -85,7 +80,6 @@ export const parseHierarchicalMenu = (
 /**
  * findMenuByLocation
  */
-
 export function findMenuByLocation(menus, location) {
   let menu;
 

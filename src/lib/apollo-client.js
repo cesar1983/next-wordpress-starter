@@ -7,7 +7,6 @@ let client;
 /**
  * getApolloClient
  */
-
 export function getApolloClient() {
   if (!client) {
     client = _createApolloClient();
@@ -18,7 +17,6 @@ export function getApolloClient() {
 /**
  * createApolloClient
  */
-
 export function _createApolloClient() {
   return new ApolloClient({
     link: new HttpLink({
