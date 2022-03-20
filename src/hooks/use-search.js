@@ -17,6 +17,9 @@ export const SearchProvider = (props) => {
   return <SearchContext.Provider value={search} {...props} />;
 };
 
+/**
+ * @returns useSearchState hook
+ */
 export function useSearchState() {
   const [state, setState] = useState(SEARCH_STATE_READY);
   const [data, setData] = useState(null);
@@ -58,6 +61,10 @@ export function useSearchState() {
   };
 }
 
+/**
+ * @param {*} param0
+ * @returns useSearch hook
+ */
 export default function useSearch({ defaultQuery = null, maxResults } = {}) {
   const search = useContext(SearchContext);
   const { client } = search;

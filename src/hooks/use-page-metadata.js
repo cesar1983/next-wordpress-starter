@@ -5,6 +5,10 @@ import { SiteContext } from 'hooks/use-site';
 
 import { constructPageMetadata } from 'lib/site';
 
+/**
+ * @param {*} param0
+ * @returns usePageMetadata hook
+ */
 export default function usePageMetadata({ metadata: pageMetadata }) {
   const { homepage, metadata: defaultMetadata } = useContext(SiteContext);
 

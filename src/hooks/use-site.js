@@ -7,9 +7,9 @@ import { removeLastTrailingSlash } from 'lib/util';
 export const SiteContext = createContext();
 
 /**
- * useSiteContext
+ * @param {*} data
+ * @returns useSiteContext hook
  */
-
 export function useSiteContext(data) {
   let { homepage = '' } = config;
 
@@ -25,9 +25,8 @@ export function useSiteContext(data) {
 }
 
 /**
- * useSite
+ * @returns useSite hook
  */
-
 export default function useSite() {
   const site = useContext(SiteContext);
   return site;
